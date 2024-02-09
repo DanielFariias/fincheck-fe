@@ -6,7 +6,8 @@ import { Button } from '../../components/button'
 import { useLoginController } from './use-login-controller'
 
 export function Login() {
-  const { handleSubmit, register, errors } = useLoginController()
+  const { handleSubmit, register, errors, isFormValid, isLoading } =
+    useLoginController()
   return (
     <>
       <header className="flex flex-col items-center gap-4 text-center">
@@ -18,7 +19,7 @@ export function Login() {
             Novo por aqui?
           </span>
           <Link
-            to={''}
+            to={'/register'}
             className="text-green-900 font-medium tracking-[-0.5px]"
           >
             Crie uma conta
@@ -45,7 +46,12 @@ export function Login() {
           error={errors.password?.message}
         />
 
-        <Button type="submit" className="mt-2">
+        <Button
+          type="submit"
+          className="mt-2"
+          disabled={!isFormValid}
+          isLoading={isLoading}
+        >
           Entrar
         </Button>
       </form>
