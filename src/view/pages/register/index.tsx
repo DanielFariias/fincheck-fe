@@ -5,7 +5,8 @@ import { Button } from '../../components/button'
 import { useRegisterController } from './use-register-controller'
 
 export function Register() {
-  const { handleSubmit, register, errors } = useRegisterController()
+  const { handleSubmit, register, errors, isFormValid, isLoading } =
+    useRegisterController()
   return (
     <>
       <header className="flex flex-col items-center gap-4 text-center">
@@ -15,7 +16,7 @@ export function Register() {
             Já possui uma conta?
           </span>
           <Link
-            to={''}
+            to={'/login'}
             className="text-green-900 font-medium tracking-[-0.5px]"
           >
             Faça Login
@@ -46,7 +47,12 @@ export function Register() {
           error={errors.password?.message}
         />
 
-        <Button type="submit" className="mt-2">
+        <Button
+          type="submit"
+          className="mt-2"
+          disabled={!isFormValid}
+          isLoading={isLoading}
+        >
           Criar conta
         </Button>
       </form>
