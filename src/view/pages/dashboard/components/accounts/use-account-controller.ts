@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { useWindowWidth } from '../../../../../app/hooks/use-window-width'
+import { useDashboard } from '../dashboard-context/use-dashboard'
 
 export function useAccountController() {
   const { width } = useWindowWidth()
+  const { areValuesVisible, toggleValuesVisibility } = useDashboard()
 
   const [sliderState, setSliderState] = useState({
     isBeginning: true,
@@ -26,5 +28,13 @@ export function useAccountController() {
 
   const slidesPerView = getSlidesPerView()
 
-  return { sliderState, setSliderState, slidesPerView }
+  return {
+    sliderState,
+    setSliderState,
+    slidesPerView,
+    areValuesVisible,
+    toggleValuesVisibility,
+    isLoading: false,
+    accounts: [],
+  }
 }
