@@ -8,7 +8,7 @@ export function Root({ children }: { children: React.ReactNode }) {
 
 export function Trigger({ children }: { children: React.ReactNode }) {
   return (
-    <RdxDropdown.Trigger className="outline-none">
+    <RdxDropdown.Trigger className="outline-none" asChild>
       {children}
     </RdxDropdown.Trigger>
   )
@@ -24,7 +24,7 @@ export function Content({ children, className }: IContentProps) {
     <RdxDropdown.Portal>
       <RdxDropdown.Content
         className={cn(
-          'rounded-2xl bg-white p-2 space-y-2 shadow-[0px_11px_20px_0px_rgba(0,0,0,0.10)] z-50',
+          'rounded-2xl bg-white p-2 space-y-2 shadow-[0px_11px_20px_0px_rgba(0,0,0,0.10)] z-[99]',
           'data-[side=top]:animate-slide-down-and-fade',
           'data-[side=bottom]:animate-slide-up-and-fade',
           className,
