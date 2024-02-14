@@ -5,7 +5,9 @@ import { Input } from '../../../../components/input'
 import { InputCurrency } from '../../../../components/input-currency'
 import Modal from '../../../../components/modal'
 import { Select } from '../../../../components/select'
-import { useNewAccountModalController } from './use-new-account-modal-controller'
+import { useEditAccountModalController } from './use-edit-account-modal-controller'
+import { TrashIcon } from '../../../../components/icons/trash-icon'
+import { ConfirmDeleteModal } from '../../../../components/confirm-delete-modal'
 
 const typeCurrency = [
   { label: 'Conta Corrente', value: 'CHECKING' },
@@ -13,22 +15,45 @@ const typeCurrency = [
   { label: 'Dinheiro Físico', value: 'CASH' },
 ]
 
-export function NewAccountModal() {
+export function EditAccountModal() {
   const {
-    isNewAccountModalOpen,
-    closeNewAccountModal,
+    isEditAccountModalOpen,
+    closeEditAccountModal,
     register,
     handleSubmit,
     errors,
     control,
     isFormValid,
     isLoading,
-  } = useNewAccountModalController()
+    handleOpenDeleteModal,
+    isDeleteModalOpen,
+    handleCloseDeleteModal,
+    handleDeleteAccount,
+    isLoadingDelete,
+  } = useEditAccountModalController()
+
+  if (isDeleteModalOpen) {
+    return (
+      <ConfirmDeleteModal
+        isLoading={isLoadingDelete}
+        onConfirm={handleDeleteAccount}
+        onClose={handleCloseDeleteModal}
+        title="Tem certeza que deseja excluir esta conta?"
+        description="Ao excluir a conta, também serão excluídos todos os registros de receita e despesas relacionados."
+      />
+    )
+  }
+
   return (
     <Modal
-      title="Nova conta"
-      open={isNewAccountModalOpen}
-      onClose={closeNewAccountModal}
+      title="Editar conta"
+      open={isEditAccountModalOpen}
+      onClose={closeEditAccountModal}
+      rightAction={
+        <button onClick={handleOpenDeleteModal}>
+          <TrashIcon className="w-6 h-6 text-red-900" />
+        </button>
+      }
     >
       <form onSubmit={handleSubmit}>
         <div>
@@ -92,7 +117,7 @@ export function NewAccountModal() {
           disabled={!isFormValid}
           isLoading={isLoading}
         >
-          Criar
+          Salvar
         </Button>
       </form>
     </Modal>

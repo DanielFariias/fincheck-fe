@@ -1,40 +1,72 @@
 import { Controller } from 'react-hook-form'
-import { DatePickerInput } from '../../../../components/date-picker-input'
-import { Input } from '../../../../components/input'
-import { InputCurrency } from '../../../../components/input-currency'
+import { Transaction } from '../../../../../app/entities/transaction'
+import { ConfirmDeleteModal } from '../../../../components/confirm-delete-modal'
 import Modal from '../../../../components/modal'
+import { TrashIcon } from '../../../../components/icons/trash-icon'
+import { InputCurrency } from '../../../../components/input-currency'
+import { Input } from '../../../../components/input'
 import { Select } from '../../../../components/select'
-import { useNewTransactionModalController } from './use-new-transaction-modal-controller'
+import { DatePickerInput } from '../../../../components/date-picker-input'
 import { Button } from '../../../../components/button'
+import { useEditTransactionModalController } from './use-edit-transaction-modal-controller'
 
-export function NewTransactionNodal() {
+interface EditTransactionModalProps {
+  open: boolean
+  onClose(): void
+  transaction: Transaction | null
+}
+
+export function EditTransactionModal({
+  transaction,
+  onClose,
+  open,
+}: EditTransactionModalProps) {
   const {
-    isNewTransactionModalOpen,
-    closeNewTransactionModal,
-    newTransactionType,
     control,
     errors,
     handleSubmit,
     register,
-    isLoading,
     accounts,
     categories,
-  } = useNewTransactionModalController()
+    isLoading,
+    isDeleteModalOpen,
+    isLoadingDelete,
+    handleDeleteTransaction,
+    handleCloseDeleteModal,
+    handleOpenDeleteModal,
+  } = useEditTransactionModalController(transaction, onClose)
 
-  const isExpense = newTransactionType === 'EXPENSE'
+  const isExpense = transaction?.type === 'EXPENSE'
+
+  if (isDeleteModalOpen) {
+    return (
+      <ConfirmDeleteModal
+        isLoading={isLoadingDelete}
+        onConfirm={handleDeleteTransaction}
+        onClose={handleCloseDeleteModal}
+        title={`Tem certeza que deseja excluir esta ${isExpense ? 'despesa' : 'receita'}?`}
+      />
+    )
+  }
+
   return (
     <Modal
-      title={isExpense ? 'Nova Despesa' : 'Nova Receita'}
-      open={isNewTransactionModalOpen}
-      onClose={closeNewTransactionModal}
+      title={isExpense ? 'Editar Despesa' : 'Editar Receita'}
+      open={open}
+      onClose={onClose}
+      rightAction={
+        <button onClick={handleOpenDeleteModal}>
+          <TrashIcon className="w-6 h-6 text-red-900" />
+        </button>
+      }
     >
       <form onSubmit={handleSubmit}>
         <div>
-          <span className="text-gray-600 text-xs tracking-[-0.5px]">
-            Valor {isExpense ? 'da Despesa' : 'da Receita'}
+          <span className="text-gray-600 tracking-[-0.5px] text-xs">
+            Valor {isExpense ? 'da despesa' : 'da receita'}
           </span>
           <div className="flex items-center gap-2">
-            <span className="text-gray-600 text-lg tracking-[-0.5px]">R$</span>
+            <span className="text-gray-600 tracking-[-0.5px] text-lg">R$</span>
             <Controller
               control={control}
               name="value"
@@ -50,7 +82,7 @@ export function NewTransactionNodal() {
           </div>
         </div>
 
-        <div className="mt-10 space-y-4">
+        <div className="mt-10 flex flex-col gap-4">
           <Input
             type="text"
             placeholder={isExpense ? 'Nome da Despesa' : 'Nome da Receita'}
@@ -109,7 +141,7 @@ export function NewTransactionNodal() {
         </div>
 
         <Button type="submit" className="w-full mt-6" isLoading={isLoading}>
-          Criar
+          Salvar
         </Button>
       </form>
     </Modal>
