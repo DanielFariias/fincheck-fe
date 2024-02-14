@@ -21,6 +21,7 @@ export function Accounts() {
     isLoading,
     accounts,
     openNewAccountModal,
+    currentBalance,
   } = useAccountController()
 
   return (
@@ -44,7 +45,7 @@ export function Accounts() {
                   !areValuesVisible && 'blur-md',
                 )}
               >
-                {formatCurrency(1265)}
+                {formatCurrency(currentBalance)}
               </strong>
               <button
                 className="w-8 h-8 flex items-center justify-center"
@@ -103,32 +104,11 @@ export function Accounts() {
                   </div>
 
                   <div>
-                    <SwiperSlide>
-                      <AccountCard
-                        color="#f92"
-                        name="Inter"
-                        balance={1000.77}
-                        type="CHECKING"
-                      />
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                      <AccountCard
-                        color="#f92"
-                        name="Inter"
-                        balance={1000.77}
-                        type="CHECKING"
-                      />
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                      <AccountCard
-                        color="#f92"
-                        name="Inter"
-                        balance={1000.77}
-                        type="CHECKING"
-                      />
-                    </SwiperSlide>
+                    {accounts.map((account) => (
+                      <SwiperSlide key={account.id}>
+                        <AccountCard data={account} />
+                      </SwiperSlide>
+                    ))}
                   </div>
                 </Swiper>
               </div>

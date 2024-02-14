@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useWindowWidth } from '../../../../../app/hooks/use-window-width'
 import { useDashboard } from '../dashboard-context/use-dashboard'
+import { useBankAccounts } from '../../../../../app/hooks/use-bank-accounts'
 
 export function useAccountController() {
   const { width } = useWindowWidth()
@@ -29,14 +30,23 @@ export function useAccountController() {
 
   const slidesPerView = getSlidesPerView()
 
+  const { accounts, isFetching } = useBankAccounts()
+
+  const currentBalance = useMemo(() => {
+    return accounts.reduce((acc, account) => {
+      return acc + account.currentBalance
+    }, 0)
+  }, [accounts])
+
   return {
     sliderState,
     setSliderState,
     slidesPerView,
     areValuesVisible,
     toggleValuesVisibility,
-    isLoading: false,
-    accounts: [],
     openNewAccountModal,
+    accounts,
+    isLoading: isFetching,
+    currentBalance,
   }
 }

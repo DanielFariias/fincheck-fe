@@ -1,17 +1,16 @@
+import { BankAccount } from '../../../../../app/entities/bank-account'
 import { cn } from '../../../../../app/utils/cn'
 import { formatCurrency } from '../../../../../app/utils/format-currency'
 import { BankAccountTypeIcon } from '../../../../components/icons/bank-account-type-icon'
 import { useDashboard } from '../dashboard-context/use-dashboard'
 
 interface IAcountCardProps {
-  color: string
-  name: string
-  balance: number
-  type: 'CASH' | 'CHECKING' | 'INVESTMENT'
+  data: BankAccount
 }
 
-export function AccountCard({ color, name, balance, type }: IAcountCardProps) {
-  const { areValuesVisible } = useDashboard()
+export function AccountCard({ data }: IAcountCardProps) {
+  const { color, name, currentBalance, type } = data
+  const { areValuesVisible, openEditAccountModal } = useDashboard()
 
   return (
     <div
@@ -19,6 +18,8 @@ export function AccountCard({ color, name, balance, type }: IAcountCardProps) {
       style={{
         borderColor: `${color}`,
       }}
+      role="button"
+      onClick={() => openEditAccountModal(data)}
     >
       <header>
         <BankAccountTypeIcon type={type} />
@@ -35,7 +36,7 @@ export function AccountCard({ color, name, balance, type }: IAcountCardProps) {
             !areValuesVisible && 'blur-[8px]',
           )}
         >
-          {formatCurrency(balance)}
+          {formatCurrency(currentBalance)}
         </span>
         <small className="text-gray-600 text-sm">Saldo atual</small>
       </div>
