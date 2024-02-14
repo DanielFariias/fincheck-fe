@@ -1,32 +1,57 @@
 import { ChevronDownIcon } from '@radix-ui/react-icons'
 import { DropdownMenu } from '../../../../components/dropdown-menu'
-import { TransactionsIcon } from '../../../../components/icons/transactions-icon'
-import { IncomeIcon } from '../../../../components/icons/income-icon'
 import { ExpensesIcon } from '../../../../components/icons/expenses-icon'
+import { IncomeIcon } from '../../../../components/icons/income-icon'
+import { TransactionsIcon } from '../../../../components/icons/transactions-icon'
 
-export function TransactionTypeDropdown() {
+interface TransactionTypeDropdownProps {
+  onSelect(type: 'INCOME' | 'EXPENSE' | undefined): void
+  selectedType: 'INCOME' | 'EXPENSE' | undefined
+}
+
+export function TransactionTypeDropdown({
+  onSelect,
+  selectedType,
+}: TransactionTypeDropdownProps) {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
-        <button className="flex items-center gap-2 text-gray-900">
-          <TransactionsIcon />
-          <span className="text-gray-800 text-sm tracking-[-0.5px]">
-            Transações
+        <button className="flex items-center gap-2">
+          {selectedType === 'EXPENSE' && <ExpensesIcon />}
+          {selectedType === 'INCOME' && <IncomeIcon />}
+          {selectedType === undefined && <TransactionsIcon />}
+
+          <span className="text-sm text-gray-800 tracking-[-0.5px] font-medium">
+            {selectedType === 'EXPENSE' && 'Despesas'}
+            {selectedType === 'INCOME' && 'Receitas'}
+            {selectedType === undefined && 'Transações'}
           </span>
-          <ChevronDownIcon />
+
+          <ChevronDownIcon className="text-gray-900" />
         </button>
       </DropdownMenu.Trigger>
 
-      <DropdownMenu.Content className="w-[279px] mt-2">
-        <DropdownMenu.Item className="gap-2">
+      <DropdownMenu.Content className="w-[279px]">
+        <DropdownMenu.Item
+          className="gap-2"
+          onSelect={() => onSelect('INCOME')}
+        >
           <IncomeIcon />
           Receitas
         </DropdownMenu.Item>
-        <DropdownMenu.Item className="gap-2">
+
+        <DropdownMenu.Item
+          className="gap-2"
+          onSelect={() => onSelect('EXPENSE')}
+        >
           <ExpensesIcon />
           Despesas
         </DropdownMenu.Item>
-        <DropdownMenu.Item className="gap-2">
+
+        <DropdownMenu.Item
+          className="gap-2"
+          onSelect={() => onSelect(undefined)}
+        >
           <TransactionsIcon />
           Transações
         </DropdownMenu.Item>
