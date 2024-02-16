@@ -1,19 +1,24 @@
-import { FilterIcon } from '../../../../components/icons/filter-icon'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { MONTHS } from '../../../../../app/config/constants'
-import { SliderOption } from './slider-option'
-import { SliderNavigation } from './slider-navigation'
-import { formatCurrency } from '../../../../../app/utils/format-currency'
-import { CategoryIcon } from '../../../../components/icons/categories/category-icon'
-import { useTransactionController } from './use-transaction-controller'
-import { cn } from '../../../../../app/utils/cn'
-import { Spinner } from '../../../../components/spinner'
 
-import emptyStateImg from '../../../../../assets/empty-state.svg'
-import { TransactionTypeDropdown } from './transaction-type-dropdown'
-import { FiltersModal } from './filters-modal'
-import { formatDate } from '../../../../../app/utils/format-date'
+import { MONTHS } from '@/app/config/constants'
+
+import { formatCurrency } from '@/app/utils/format-currency'
+import { formatDate } from '@/app/utils/format-date'
+import { cn } from '@/app/utils/cn'
+
+import { CategoryIcon } from '@/view/components/icons/categories/category-icon'
+import { FilterIcon } from '@/view/components/icons/filter-icon'
+import { Spinner } from '@/view/components/spinner'
+
 import { EditTransactionModal } from '../../modals/edit-transaction-modal'
+
+import { useTransactionController } from './use-transaction-controller'
+import { TransactionTypeDropdown } from './transaction-type-dropdown'
+import { SliderNavigation } from './slider-navigation'
+import { SliderOption } from './slider-option'
+import { FiltersModal } from './filters-modal'
+
+import emptyStateImg from '@/assets/empty-state.svg'
 
 export function Transactions() {
   const {
