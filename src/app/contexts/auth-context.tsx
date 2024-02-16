@@ -11,11 +11,13 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { userService } from '../services/user-service'
 import toast from 'react-hot-toast'
 import { LaunchScreen } from '../../view/components/launch-screen'
+import { User } from '../entities/user'
 
 interface IAuthContextProps {
   signedIn: boolean
   signIn: (accessToken: string) => void
   signOut: VoidFunction
+  user: User | undefined
 }
 
 export const AuthContext = createContext({} as IAuthContextProps)
@@ -30,7 +32,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   })
   const queryClient = useQueryClient()
 
-  const { isError, isFetching, isSuccess } = useQuery({
+  const { isError, isFetching, isSuccess, data } = useQuery({
     queryKey: ['users', 'me'],
     queryFn: () => userService.me(),
     enabled: signedIn,
@@ -63,6 +65,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         signedIn: isSuccess && signedIn,
         signIn,
         signOut,
+        user: data,
       }}
     >
       <LaunchScreen isActive={isFetching} />
