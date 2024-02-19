@@ -8,7 +8,6 @@
   <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#computer-demo">Demo</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#eyes-preview">Preview</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#art-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#fire-como-rodar-em-sua-maquina">Como Rodar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#gear-como-contribuir">Contribuições</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#-licença">Licença</a>
@@ -31,7 +30,7 @@ Com uma interface amigável, o Fincheck simplifica o processo de registro e cate
 # :pencil: Funcionalidades
 - [x] Cadastro, autenticação e recuperação de senha de usuários
 - [x] Listagem, cadastro, atualização e remoção de contas bancárias
-- [x]Listagem, cadastro, atualização e remoção de transações (receitas e despesas)
+- [x] Listagem, cadastro, atualização e remoção de transações (receitas e despesas)
 
 ---
 
@@ -62,12 +61,12 @@ Deploy na [Vercel](df-fincheck.vercel.app/)
 ### Web Screenshot
 <div>
    <p align="center">
-      <img src=".github/cover.png" width="360px" > 
-      <img src=".github/cover.png" width="360px" > 
+      <img src=".github/image-1.png" width="360px" > 
+      <img src=".github/image-2.png" width="360px" > 
    </p>
    <p align="center">
-      <img src=".github/cover.png" width="360px" > 
-      <img src=".github/cover.png" width="360px" > 
+      <img src=".github/image-3.png" width="360px" > 
+      <img src=".github/image-4.png" width="360px" > 
    </p>   
 </div>
 
