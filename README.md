@@ -22,36 +22,39 @@
 </h1>
 
 # :book: Sobre o projeto
-  ->
+O Fincheck é a solução ideal para quem busca um controle eficiente e descomplicado das finanças pessoais. Esta aplicação intuitiva oferece uma maneira fácil de monitorar e gerenciar seus gastos diários. Com a capacidade de filtrar as despesas por conta, categoria e data, o Fincheck proporciona uma visão abrangente das suas finanças.
 
-  Escreva Aqui
-
-  <-
+Com uma interface amigável, o Fincheck simplifica o processo de registro e categorização de despesas, permitindo que você mantenha o controle total sobre seus gastos. Seja para acompanhar as contas do mês, analisar padrões de consumo ou estabelecer metas financeiras, esta aplicação oferece as ferramentas necessárias para uma gestão financeira eficaz.
 
 ---
 
 # :pencil: Funcionalidades
-- [ ] responsividade
-- [ ] thema dark / light
-- [ ] Versão PWA
-- [ ] Testar outros bancos de dados (supabase / firestore)
-- [x] Styled-Components
-- [x] ESLint
-- [x] Github Bonito
+- [x] Cadastro, autenticação e recuperação de senha de usuários
+- [x] Listagem, cadastro, atualização e remoção de contas bancárias
+- [x]Listagem, cadastro, atualização e remoção de transações (receitas e despesas)
 
 ---
 
 # :rocket: Tecnologias
 Tecnologias utilizadas para desenvolver o projeto:
 
-- [ReactJS](https://pt-br.reactjs.org)
+- [ReactJS](https://react.dev/)
 - [Vite](https://vitejs.dev/)
 - [Typescript](https://www.typescriptlang.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [React Query](https://tanstack.com/query/)
+- [React Hook Forms](https://react-hook-form.com/)
+- [Zod](https://zod.dev/)
+- [Radix UI](https://www.radix-ui.com/)
+- [Headless UI](https://headlessui.com/)
+- [Axios](https://axios-http.com/ptbr/docs/intro)
+- [Swiper](https://swiperjs.com/)
+- [React Hot Toast](https://react-hot-toast.com/)
 
 ---
 
 # :computer: Demo
-Deploy no [Firebase](https://letmeask-f04c1.web.app/)
+Deploy na [Vercel](df-fincheck.vercel.app/)
 
 ---
 
@@ -59,19 +62,14 @@ Deploy no [Firebase](https://letmeask-f04c1.web.app/)
 ### Web Screenshot
 <div>
    <p align="center">
-      <img src=".github/cover.svg" width="360px" > 
-      <img src=".github/cover.svg" width="360px" > 
+      <img src=".github/cover.png" width="360px" > 
+      <img src=".github/cover.png" width="360px" > 
    </p>
    <p align="center">
-      <img src=".github/cover.svg" width="360px" > 
-      <img src=".github/cover.svg" width="360px" > 
+      <img src=".github/cover.png" width="360px" > 
+      <img src=".github/cover.png" width="360px" > 
    </p>   
 </div>
-
----
-
-# :art: Layout
-O Layout foi desenvolvido pelo [Tiago Luchtenberg](https://www.instagram.com/tiagoluchtenberg/), e você pode acessá-lo no [Figma](https://www.figma.com/file/LAE2NEwfpusPS94ZNBiuAy/Letmeask-(Community)?node-id=45%3A3279)
 
 ---
 
@@ -84,10 +82,10 @@ O Layout foi desenvolvido pelo [Tiago Luchtenberg](https://www.instagram.com/tia
 No seu terminal:
 ```bash
 # Abra um terminal e copie este repositório com o comando
-$ git clone https://github.com/DanielFariias/LetMe-Ask
+$ git clone https://github.com/DanielFariias/fincheck-fe.git
 
 # Acesse a pasta do projeto no prompt de comando 
-$ cd LetMe-Ask
+$ cd fincheck-fe
 
 # Instale as dependências
 yarn install
@@ -99,7 +97,7 @@ $ yarn dev
 ou
 $ npm run dev
 
-# Acesse http://localhost:3000 no seu navagador.
+# Acesse http://localhost:3000 no seu navegador.
 ```
 
 ---
@@ -119,5 +117,5 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ---
 
-> Este projeto foi desenvolvido com ❤️ por **[Daniel Farias](https://github.com/DanielFariias)**, com o instrutor **[Diego Fernandes](https://www.linkedin.com/in/diego-schell-fernandes/) **durante a** [Next Level Week # 6 - Trilha ReactJS](https://nextlevelweek.com/)** da **[Rocketseat](https://rocketseat.com.br)** 💜 <br> 
+> Este projeto foi desenvolvido com ❤️ por **[Daniel Farias](https://github.com/DanielFariias)** <br> 
 >Se te ajudou, dá ⭐, vai me ajudar também. 😉
