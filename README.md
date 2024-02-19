@@ -18,7 +18,7 @@
 ---
 
 <h1 align="center">
-    <img alt="fincheck" src=".github/cover.svg" />
+    <img alt="fincheck" src=".github/cover.png" />
 </h1>
 
 # :book: Sobre o projeto
